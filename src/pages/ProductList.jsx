@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
+import Product from "./Product";
 import { mobile } from "../responsive";
 
 const Container = styled.div``;
@@ -37,11 +39,13 @@ const Select = styled.select`
 
 `;
 const Option = styled.option``;
+
+
 function ProductList() {
   return (
     <Container>
       <Navbar />
-      <Title>Dresses</Title>
+      <Title>Dresses</Title>git
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products</FilterText>
@@ -56,6 +60,7 @@ function ProductList() {
             <Option>Yellow</Option>
             <Option>Green</Option>
           </Select>
+          
           <Select>
             <Option disabled selected>
               Size
@@ -76,7 +81,9 @@ function ProductList() {
           </Select>
         </Filter>
       </FilterContainer>
+      <Link to="/product">
       <Products />
+      </Link>
       <Newsletter />
       <Footer />
     </Container>

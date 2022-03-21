@@ -7,6 +7,7 @@ import styled from "styled-components";
 import {sliderItems} from "../data";
 import React from "react";
 import {mobile} from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
@@ -106,7 +107,9 @@ function Slider() {
   <InfoContainer>
         <Title>{item.title}</Title>
         <Description>{item.desc}</Description>
+        <Link to="/productlist">
         <Button>Show Now</Button>
+        </Link>
         </InfoContainer>
       </Slide>
         ))};

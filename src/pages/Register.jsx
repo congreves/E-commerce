@@ -1,4 +1,5 @@
 import React from 'react'
+import Navbar from '../components/Navbar';
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -8,6 +9,7 @@ background-color: #dbe6e0;
 display: flex;
 align-items: center;
 justify-content: center;
+flex-direction: column;
 
 `
 const Wrapper = styled.div`
@@ -56,7 +58,9 @@ transition: all 0.5s ease;
 function Register() {
   return (
   <Container>
+       <Navbar/>
       <Wrapper>
+     
           <Title>
               Create an account
           </Title>

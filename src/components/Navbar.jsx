@@ -1,34 +1,28 @@
-import { ShoppingCartOutlined } from "@mui/icons-material";
+import { NoEncryption, ShoppingCartOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import React from "react";
 import styled from "styled-components";
-import {mobile} from "../responsive";
+import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
-  margin: 30px  0px;
+  margin-bottom: 30px;
   ${mobile({ height: "50px" })}
- 
 `;
 const Wrapper = styled.div`
   padding: 20px 20px;
   display: flex;
   justify-content: space-between;
+
   ${mobile({ padding: "10px 0px" })}
 `;
 const Left = styled.div`
   flex: 1;
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
   ${mobile({ display: "none" })}
 `;
-
-
-
-const Input = styled.input`
-  border: none;
-`;
-
 const Logo = styled.h1`
   font-weight: bold;
   font-size: 36px;
@@ -44,35 +38,49 @@ const Right = styled.div`
   align-items: center;
   justify-content: flex-end;
   ${mobile({ flex: 2, justifyContent: "space-between" })}
-  
 `;
 
 const MenuItem = styled.div`
-font-size: 18px;
+  font-size: 18px;
   cursor: pointer;
   margin-left: 25px;
-  ${mobile({ fontSize: "14px", marginLeft: "15px"})}
+  ${mobile({ fontSize: "14px", marginLeft: "15px" })}
 `;
+
+const linkStyle = {
+  margin: "1rem",
+  textDecoration: "none",
+  color: 'black'
+};
 
 function Navbar() {
   return (
     <Container>
       <Wrapper>
         <Left>
-         
+        <Link to="/register" style={linkStyle}>
+            <MenuItem>Register</MenuItem>
+          </Link>
+          <Link to="/login" style={linkStyle}>
+            <MenuItem>Sign In</MenuItem>
+          </Link>
         </Left>
         <Center>
-          <Logo>Sonrisa.</Logo>
+          <Link to="/" style={linkStyle}>
+            <Logo>Sonrisa.</Logo>
+          </Link>
         </Center>
         <Right>
-          <MenuItem>Register</MenuItem>
-          <MenuItem>Sign In</MenuItem>
+          <Link to="/productlist" style={linkStyle}>
+            <MenuItem>All Products</MenuItem>
+          </Link>
           <MenuItem>
-          <Badge badgeContent={4} color="primary">
-              <ShoppingCartOutlined/>
-          </Badge>
+            <Link to="/cart" style={linkStyle}>
+              <Badge badgeContent={4} color="primary">
+                <ShoppingCartOutlined />
+              </Badge>
+            </Link>
           </MenuItem>
-          <MenuItem></MenuItem>
         </Right>
       </Wrapper>
     </Container>

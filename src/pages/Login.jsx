@@ -1,19 +1,23 @@
 import React from 'react'
 import styled from "styled-components";
+import Navbar from '../components/Navbar';
 import {mobile} from "../responsive";
 
 
 const Container = styled.div`
 width: 100vw;
 height: 100vh;
-background-color: #dbe6e0;
+background-color: #FFFFF;
 display: flex;
 align-items: center;
 justify-content: center;
+padding: 20px;
+flex-direction: column;
 
 `
+
+
 const Wrapper = styled.div`
-padding: 20px;
 width: 25%;
 background-color: #ffff;
 ${mobile({ width: "75%" })}
@@ -60,7 +64,9 @@ cursor:pointer;
 
 function Login() {
   return (
+    
     <Container>
+      <Navbar/>
     <Wrapper>
         <Title>
            Sign In
