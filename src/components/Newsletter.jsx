@@ -1,10 +1,12 @@
 import { MailOutlined } from '@mui/icons-material';
 import React from 'react'
 import styled from "styled-components";
+import {mobile} from "../responsive";
 
 const Container = styled.div`
 height: 60vh;
-background-color: #fcf5f5;
+background-color: #F4fbfb
+;
 display:flex;
 align-items:center;
 justify-content: center;
@@ -14,11 +16,14 @@ flex-direction: column;
 const Title = styled.h1`
 font-size: 70px;
 margin: 20px;
+${mobile({ fontSize: "46px"})}
 `
+
 const Desc = styled.div`
 font-size: 24px;
 font-weight: 200;
-margin-botto,: 20px;
+margin-bottom: 20px;
+${mobile({ textAlign:"center" })}
 `
 const InputContainer = styled.div`
 width: 50%;
@@ -27,6 +32,7 @@ background-color: white;
 display: flex;
 justify-content: space-between;
 border: 1px solid lightgrey;
+${mobile({ width: "80%"})}
 
 `
 const Input = styled.input`

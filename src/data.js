@@ -4,7 +4,7 @@ export const sliderItems = [
       img: "https://img.mytheresa.com/976/976/90/jpeg/catalog/product/ce/P00627610.jpg",
       title: "SUMMER SALE",
       desc: "Let the summer breeze fondle your skin.",
-      bg: "f5fafd",
+      bg: "fffff",
     },
     {
       id: 2,
