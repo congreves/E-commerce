@@ -50,7 +50,7 @@ const MenuItem = styled.div`
 const linkStyle = {
   margin: "1rem",
   textDecoration: "none",
-  color: 'black'
+  color: "black",
 };
 
 function Navbar() {
@@ -58,7 +58,7 @@ function Navbar() {
     <Container>
       <Wrapper>
         <Left>
-        <Link to="/register" style={linkStyle}>
+          <Link to="/register" style={linkStyle}>
             <MenuItem>Register</MenuItem>
           </Link>
           <Link to="/login" style={linkStyle}>

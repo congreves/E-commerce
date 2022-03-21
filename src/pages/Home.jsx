@@ -1,25 +1,25 @@
-import React from 'react';
-import Categories from '../components/Categories';
-import Navbar from '../components/Navbar';
-import Slider from '../components/Slider';
-import Products from '../components/Products';
-import Newsletter from '../components/Newsletter';
-import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
+import React from "react";
+import Categories from "../components/Categories";
+import Navbar from "../components/Navbar";
+import Slider from "../components/Slider";
+import Products from "../components/Products";
+import Newsletter from "../components/Newsletter";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 function Home() {
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <Slider />
       <Link to="/productlist">
-      <Categories />
+        <Categories />
       </Link>
       <Products />
       <Newsletter />
       <Footer />
-      </div>
-  )
+    </div>
+  );
 }
 
-export default Home
+export default Home;

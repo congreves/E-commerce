@@ -1,7 +1,16 @@
-import { Facebook, Instagram, MailOutlined, Phone, Pinterest, Roofing, Room, Twitter } from "@mui/icons-material";
+import {
+  Facebook,
+  Instagram,
+  MailOutlined,
+  Phone,
+  Pinterest,
+  Roofing,
+  Room,
+  Twitter,
+} from "@mui/icons-material";
 import React from "react";
 import styled from "styled-components";
-import {mobile} from "../responsive";
+import { mobile } from "../responsive";
 
 const Container = styled.div`
   display: flex;
@@ -19,7 +28,6 @@ const Desc = styled.p`
 `;
 const SocialContainer = styled.div`
   display: flex;
-
 `;
 const SocialIcon = styled.div`
   width: 40px;
@@ -58,20 +66,17 @@ const Right = styled.div`
   padding: 20px;
 
   ${mobile({ backgroundColor: "#Accec6" })}
-
 `;
 
 const ContactItem = styled.div`
-margin-bottom: 20px;
-display: flex;
-align-items: center;
-
-
-`
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+`;
 
 const Payment = styled.img`
-width: 50%;
-`
+  width: 50%;
+`;
 
 function Footer() {
   return (
@@ -117,25 +122,20 @@ function Footer() {
       </Center>
 
       <Right>
-    <Title>
-Contact
-    </Title>
-    <ContactItem>
-        <Room  style={{marginRight:"10px"}}/>
-address
-
-    </ContactItem>
-  <ContactItem>
-      <Phone style={{marginRight:"10px"}}/>
-
-     
-        phonenumber
-    </ContactItem>
-    <ContactItem>
-        <MailOutlined style={{marginRight:"10px"}}/>
-        email
+        <Title>Contact</Title>
+        <ContactItem>
+          <Room style={{ marginRight: "10px" }} />
+          address
         </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png"/>
+        <ContactItem>
+          <Phone style={{ marginRight: "10px" }} />
+          phonenumber
+        </ContactItem>
+        <ContactItem>
+          <MailOutlined style={{ marginRight: "10px" }} />
+          email
+        </ContactItem>
+        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
     </Container>
   );

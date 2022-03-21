@@ -3,11 +3,9 @@ import React from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import {mobile} from "../responsive";
+import { mobile } from "../responsive";
 
-
-const Container = styled.div`
-`;
+const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
@@ -23,8 +21,6 @@ const Top = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  
-
 `;
 
 const TopButton = styled.button`
@@ -44,7 +40,7 @@ const TopButton = styled.button`
   }
 `;
 const TopTexts = styled.div`
-${mobile({ display: "none" })}
+  ${mobile({ display: "none" })}
 `;
 const TopText = styled.span`
   text-decoration: underline:
@@ -52,7 +48,6 @@ const TopText = styled.span`
   margin: 0px 10px;
 `;
 const Bottom = styled.div`
-
   display: flex;
   justify-content: space-between;
   ${mobile({ flexDirection: "column", margin: "10px 5px" })}
@@ -87,15 +82,18 @@ const ProductColor = styled.div`
   border-radius: 50%;
   background-color: ${(props) => props.color};
 `;
-const ProductSize = styled.span`
-`;
+const ProductSize = styled.span``;
 const PriceDetail = styled.span`
   flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  ${mobile({ flexDirection: "row", margin: "10px 5px",  justifyContent: "space-between"})}
+  ${mobile({
+    flexDirection: "row",
+    margin: "10px 5px",
+    justifyContent: "space-between",
+  })}
 `;
 const ProductAmountContainer = styled.div`
   display: flex;
@@ -106,13 +104,11 @@ const ProductAmountContainer = styled.div`
 const ProductAmount = styled.div`
   font-size: 24px;
   margin: 5px;
-  
 `;
 const ProductPrice = styled.div`
   font-size: 30px;
   font-weight: 200;
   ${mobile({ fontSize: "24px" })}
-
 `;
 const Hr = styled.hr`
   background-color: #eeee;
