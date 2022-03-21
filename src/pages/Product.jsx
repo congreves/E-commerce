@@ -3,8 +3,8 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
-import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
+import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 
 const Container = styled.div`
   display: block;
@@ -38,80 +38,77 @@ const Price = styled.span`
 `;
 
 const FilterContainer = styled.div`
-width: 50%;
-display:flex;
-justify-content: space-between;
-margin: 30px 0px;
-
-
-`
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0px;
+`;
 const Filter = styled.div`
-display: flex;
-align-items: center;
-
-
-`
+  display: flex;
+  align-items: center;
+`;
 const FilterTitle = styled.span`
-font-size: 20px;
-font-weight: 200;
-`
+  font-size: 20px;
+  font-weight: 200;
+`;
 
 const FilterColor = styled.div`
-width: 20px;
-height: 20px;
-border-radius: 50%;
-background-color: ${(props) => props.color};
-margin: 0px 5px;
-cursor: pointer;
-`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: ${(props) => props.color};
+  margin: 0px 5px;
+  cursor: pointer;
+`;
 
 const FilterSize = styled.select`
-margin-left: 10px;
-padding: 5px;
-cursor: pointer;
-`
+  margin-left: 10px;
+  padding: 5px;
+  cursor: pointer;
+`;
 
-const FilterSizeOption = styled.option``
+const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
-display:flex;
-align-items: center;
-justify-content: space-between;
-width: 50%;
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 50%;
+  cursor: pointer;
 `;
 const AmountContainer = styled.div`
-display: flex;
-align-items:center;
-font-weight: 700;
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+  cursor: pointer;
 `;
 const Amount = styled.span`
-display:flex;
-align-items:center;
-justify-content: center;
-border-radius: 10px;
-border: 1px solid lightgrey;
-width: 30px;
-height: 30px;
-margin: 0px 5px;
-cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+  width: 30px;
+  height: 30px;
+  margin: 0px 5px;
+  cursor: pointer;
 `;
 const Button = styled.button`
-border: 1px solid lightgrey;
-padding: 15px;
-background-color: white;
-cursor: pointer;
-font-weight: 500;
+  border: 1px solid #b7ccc0;
+  padding: 15px;
+  cursor: pointer;
+  font-weight: 500;
 
-&:hover {
+  background-color: #ffff;
+  color: #b7ccc0;
+  transition: all 0.5s ease;
+  cursor: pointer;
+
+  &:hover {
     background-color: #b7ccc0;
-}
-
-
+    color: #ffff;
+  }
 `;
-
-
 
 function Product() {
   return (
@@ -150,14 +147,13 @@ function Product() {
             </Filter>
           </FilterContainer>
           <AddContainer>
-              <AmountContainer>
-               <DeleteOutlineRoundedIcon />
-               <Amount>1</Amount>
+            <AmountContainer>
+              <DeleteOutlineRoundedIcon />
+              <Amount>1</Amount>
 
-                  <AddCircleOutlineOutlinedIcon/>
-
-              </AmountContainer>
-              <Button>Add To Cart</Button>
+              <AddCircleOutlineOutlinedIcon />
+            </AmountContainer>
+            <Button>Add To Cart</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
