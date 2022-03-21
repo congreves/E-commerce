@@ -40,7 +40,7 @@ function ProductList() {
   return (
     <Container>
       <Navbar />
-      <Title>Dresses</Title>git
+      <Title>Dresses</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products</FilterText>
