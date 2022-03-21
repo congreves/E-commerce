@@ -15,7 +15,9 @@ function Home() {
       <Link to="/productlist">
         <Categories />
       </Link>
+      <Link to="/productlist">
       <Products />
+      </Link>
       <Newsletter />
       <Footer />
     </div>
