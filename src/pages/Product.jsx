@@ -6,6 +6,8 @@ import Newsletter from "../components/Newsletter";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { mobile } from "../responsive";
+import productState from "../store/Products/atom";
+import { useRecoilState } from "recoil";
 
 const Container = styled.div`
   display: block;
@@ -117,6 +119,24 @@ const Button = styled.button`
 `;
 
 function Product() {
+  const [products, setProducts] = useRecoilState(productState);
+
+function handleClick() {
+  const item = {id: "72820",
+  
+};
+setProducts({
+  ...products,
+  cart: [...products.cart, item]
+})
+console.log(products)
+}
+
+
+
+
+
+
   return (
     <Container>
       <Navbar />
@@ -159,7 +179,7 @@ function Product() {
 
               <AddCircleOutlineOutlinedIcon />
             </AmountContainer>
-            <Button>Add To Cart</Button>
+            <Button onClick={handleClick}>Add To Cart</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

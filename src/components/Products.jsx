@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data";
 import Product from "./Product";
+import { useRecoilState } from "recoil";
+import  productState  from "../store/Products/atom";
 
 const Container = styled.div`
   display: flex;
@@ -11,9 +12,23 @@ const Container = styled.div`
 `;
 
 function Products() {
+const [products, setProducts] = useRecoilState(productState);
+  
+  const productsFromServer = [{}, {}, {}]
+
+  useEffect(() => {
+    setProducts({
+      ...products,
+      products: productsFromServer
+    })
+  
+
+  }, [])
+  
+  console.log(products)
   return (
     <Container>
-      {popularProducts.map((item) => (
+      {products.popularProducts.map((item) => (
         <Product item={item} key={item.id} />
       ))}
     </Container>

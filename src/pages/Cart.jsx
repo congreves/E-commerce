@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
+import { useRecoilState } from "recoil";
+import productState from "../store/Products/atom";
 
 const Container = styled.div``;
 
@@ -157,6 +159,8 @@ const Button = styled.button`
 `;
 
 function Cart() {
+  const [products, setProducts] = useRecoilState(productState);
+
   return (
     <Container>
       <Navbar />
@@ -172,51 +176,33 @@ function Cart() {
         </Top>
         <Bottom>
           <Info>
-            <Product>
-              <ProductDetail>
-                <Image src="https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/fd/P00651692.jpg" />
-                <Details>
-                  <ProductName>JANOU DRESS</ProductName>
-                  <ProductId>56789029837654</ProductId>
-                  <ProductColor
-                    color="#D0fda2
-"
-                  />
-                  <ProductSize>EU 42</ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>2</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice> $ 39 </ProductPrice>
-              </PriceDetail>
-            </Product>
             <Hr />
-            <Product>
-              <ProductDetail>
-                <Image src="https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/4d/P00645299.jpg" />
-                <Details>
-                  <ProductName>HIBOU DRESS</ProductName>
-                  <ProductId>2678902977754</ProductId>
-                  <ProductColor
-                    color="#EED8C0
+            {products.cart.map(() => {
+              return (
+                <Product>
+                  <ProductDetail>
+                    <Image src="https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/4d/P00645299.jpg" />
+                    <Details>
+                      <ProductName>HIBOU DRESS</ProductName>
+                      <ProductId>2678902977754</ProductId>
+                      <ProductColor
+                        color="#EED8C0
 "
-                  />
-                  <ProductSize>EU 42</ProductSize>
-                </Details>
-              </ProductDetail>
-              <PriceDetail>
-                <ProductAmountContainer>
-                  <Add />
-                  <ProductAmount>1</ProductAmount>
-                  <Remove />
-                </ProductAmountContainer>
-                <ProductPrice> $ 29 </ProductPrice>
-              </PriceDetail>
-            </Product>
+                      />
+                      <ProductSize>EU 42</ProductSize>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <ProductAmountContainer>
+                      <Add />
+                      <ProductAmount>1</ProductAmount>
+                      <Remove />
+                    </ProductAmountContainer>
+                    <ProductPrice> $ 29 </ProductPrice>
+                  </PriceDetail>
+                </Product>
+              );
+            })}
           </Info>
           <Summary>
             <SummaryTitle>Order Summary</SummaryTitle>
