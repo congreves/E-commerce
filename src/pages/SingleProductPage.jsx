@@ -17,7 +17,7 @@ function Product() {
   const product = products.find((p) => p.id === parseInt(params.productId));
   const [cart, setCart] = useRecoilState(cartState);
 
-  const { addToCart } = CreateCartAPI(cart, setCart);
+  const { addToCart } = CreateCartAPI();
 
   return (
     <Container>
