@@ -7,7 +7,7 @@ import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import { mobile } from "../responsive";
 import { useRecoilState } from "recoil";
-import productState from "../store/Products/atom";
+import productState from "../store/products/atom";
 import axios from "axios";
 
 const Container = styled.div``;
@@ -25,6 +25,7 @@ const Filter = styled.div`
   margin: 20px;
   ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
 `;
+
 const FilterText = styled.span`
   font-size: 20px;
   font-weight: 600;
@@ -37,6 +38,7 @@ const Select = styled.select`
   margin-right: 20px;
   ${mobile({ margin: "10px 0px" })}
 `;
+
 const Option = styled.option``;
 
 function ProductList() {
@@ -81,11 +83,9 @@ function ProductList() {
           </Select>
         </Filter>
       </FilterContainer>
-      {products.map((product) => (
-        <Link to={`/product/${product.id}`}>
-          <Products />
-        </Link>
-      ))}
+
+      <Products />
+
       <Newsletter />
       <Footer />
     </Container>
