@@ -1,10 +1,11 @@
 import { atom } from "recoil";
-import { categories, popularProducts } from "../../data";
 
-const productState = atom({
+
+export const productState = atom({
   key: "productState",
-  default: { popularProducts, categories: categories , products: [], cart: [],},
-
+  default: [],
+  cart: [],
+  products: [],
 });
 
-export default productState
+export default productState;

@@ -2,23 +2,34 @@ import React from "react";
 import styled from "styled-components";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
+import Footer from "../components/Footer";
 
 const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
   background-color: #FFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  flex-direction: column;
 `;
 
 const Wrapper = styled.div`
-  width: 25%;
-  background-color: #ffff;
+  width: 100vw;
+  height: 100vh;
+  background-color: #dbe7dc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   ${mobile({ width: "75%" })}
 `;
+
+const LoginBox = styled.div`
+  padding: 20px;
+  width: 40%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+`;
+
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
@@ -60,15 +71,18 @@ function Login() {
     <Container>
       <Navbar />
       <Wrapper>
-        <Title>Sign In</Title>
-        <Form>
-          <Input placeholder="Username" />
-          <Input placeholder="Password" />
-          <Button>Log In</Button>
-          <Link>Forgot your password?</Link>
-          <Link>Create A New Account</Link>
-        </Form>
+        <LoginBox>
+          <Title>Sign In</Title>
+          <Form>
+            <Input placeholder="Username" />
+            <Input placeholder="Password" />
+            <Button>Log In</Button>
+            <Link>Forgot your password?</Link>
+            <Link>Create A New Account</Link>
+          </Form>
+        </LoginBox>
       </Wrapper>
+      <Footer />
     </Container>
   );
 }

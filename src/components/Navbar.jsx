@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.div`
   height: 60px;
+  padding-bottom: 10px;
   margin-bottom: 30px;
   ${mobile({ height: "50px" })}
 `;

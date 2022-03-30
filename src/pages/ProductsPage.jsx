@@ -6,6 +6,9 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import { mobile } from "../responsive";
+import { useRecoilState } from "recoil";
+import productState from "../store/Products/atom";
+import axios from "axios";
 
 const Container = styled.div``;
 
@@ -37,6 +40,8 @@ const Select = styled.select`
 const Option = styled.option``;
 
 function ProductList() {
+  const [products, setProducts] = useRecoilState(productState);
+
   return (
     <Container>
       <Navbar />
@@ -76,9 +81,11 @@ function ProductList() {
           </Select>
         </Filter>
       </FilterContainer>
-      <Link to="/product">
-        <Products />
-      </Link>
+      {products.map((product) => (
+        <Link to={`/product/${product.id}`}>
+          <Products />
+        </Link>
+      ))}
       <Newsletter />
       <Footer />
     </Container>

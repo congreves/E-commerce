@@ -1,4 +1,5 @@
 import { Add, Remove } from "@mui/icons-material";
+import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import React from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer";
@@ -161,6 +162,10 @@ const Button = styled.button`
 function Cart() {
   const [products, setProducts] = useRecoilState(productState);
 
+  function handleRemove(id) {
+    setProducts(products.filter((p) => p.id !== id));
+  }
+
   return (
     <Container>
       <Navbar />
@@ -169,7 +174,7 @@ function Cart() {
         <Top>
           <TopButton type="outlined">Continue Shopping</TopButton>
           <TopTexts>
-            <TopText>Shopping bag (2)</TopText>
+            <TopText>Shopping bag (1)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">Check Out Now</TopButton>
@@ -177,19 +182,22 @@ function Cart() {
         <Bottom>
           <Info>
             <Hr />
-            {products.cart.map(() => {
+            {products.map((product) => {
               return (
                 <Product>
                   <ProductDetail>
-                    <Image src="https://img.mytheresa.com/1088/1088/66/jpeg/catalog/product/4d/P00645299.jpg" />
+                    <Image src={product.image} />
                     <Details>
-                      <ProductName>HIBOU DRESS</ProductName>
-                      <ProductId>2678902977754</ProductId>
+                      <ProductName>{product.title}</ProductName>
+                      <ProductId>{product.id}</ProductId>
                       <ProductColor
                         color="#EED8C0
 "
                       />
                       <ProductSize>EU 42</ProductSize>
+                      <DeleteOutlineRoundedIcon
+                        onClick={() => handleRemove(products.id)}
+                      />
                     </Details>
                   </ProductDetail>
                   <PriceDetail>

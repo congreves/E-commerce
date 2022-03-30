@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import CategoryItem from "./CategoryItem";
 import { mobile } from "../responsive";
-import  productState  from "../store/Products/atom";
-import { atom, useRecoilState } from "recoil";
+import { categories } from "../data";
 
 const Container = styled.div`
   display: flex;
@@ -12,16 +10,70 @@ const Container = styled.div`
   ${mobile({ padding: "0px", flexDirection: "column" })}
 `;
 
-function Categories() {
+const CategoryItem = styled.div`
+  flex: 1;
+  margin: 3px;
+  height: 70vh;
+  position: relative;
+`;
 
-  const  [products, setProducts] = useRecoilState(productState)
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  ${mobile({ height: "20vh", flexDirection: "column" })}
+`;
+const Info = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+`;
+const Title = styled.h1`
+  color: white;
+  margin: 20px;
+`;
+const Button = styled.button`
+  border: none;
+  padding: 10px;
+  background-color: white;
+  color: grey;
+  cursor: pointer;
+  font-weight: 600;
+`;
+
+function Categories() {
   return (
     <Container>
-      {products.categories.map((item) => (
-        <CategoryItem item={item} key={item.id} />
-      ))}
+      <CategoryItem>
+        <Image src={categories[0].img} />
+        <Info>
+          <Title>{categories.title}</Title>
+          <Button>SHOW NOW</Button>
+        </Info>
+      </CategoryItem>
+      <CategoryItem>
+        <Image src={categories[1].img} />
+        <Info>
+          <Title>{categories.title}</Title>
+          <Button>SHOW NOW</Button>
+        </Info>
+      </CategoryItem>
+      <CategoryItem>
+        <Image src={categories[2].img} />
+        <Info>
+          <Title>{categories.title}</Title>
+          <Button>SHOW NOW</Button>
+        </Info>
+      </CategoryItem>
     </Container>
   );
 }
 
 export default Categories;
+

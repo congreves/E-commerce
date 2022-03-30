@@ -1,21 +1,32 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import styled from "styled-components";
+import Footer from "../components/Footer";
 
 const Container = styled.div`
+  background-color: #ffff;
+`;
+const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #dbe6e0;
+  background-color: #dbe7dc;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 `;
-const Wrapper = styled.div`
+
+const RegistrationBox = styled.div`
   padding: 20px;
   width: 40%;
-  background-color: #ffff;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 `;
+
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
@@ -54,22 +65,25 @@ function Register() {
     <Container>
       <Navbar />
       <Wrapper>
-        <Title>Create an account</Title>
-        <Form>
-          <Input placeholder="Name" />
-          <Input placeholder="Lastname" />
-          <Input placeholder="Email" />
-          <Input placeholder="Username" />
-          <Input placeholder="Password" />
-          <Input placeholder="Confirm Password" />
-          <Agreement>
-            {" "}
-            By creating an account, I consent to the processing of my personal
-            data in accordance with the <b>PRIVACY POLICY</b>
-          </Agreement>
-          <Button>Create</Button>
-        </Form>
+        <RegistrationBox>
+          <Title>Create an account</Title>
+          <Form>
+            <Input placeholder="Name" />
+            <Input placeholder="Lastname" />
+            <Input placeholder="Email" />
+            <Input placeholder="Username" />
+            <Input placeholder="Password" />
+            <Input placeholder="Confirm Password" />
+            <Agreement>
+              {" "}
+              By creating an account, I consent to the processing of my personal
+              data in accordance with the <b>PRIVACY POLICY</b>
+            </Agreement>
+            <Button>Create</Button>
+          </Form>
+        </RegistrationBox>
       </Wrapper>
+      <Footer />
     </Container>
   );
 }

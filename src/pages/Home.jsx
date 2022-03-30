@@ -16,7 +16,7 @@ function Home() {
         <Categories />
       </Link>
       <Link to="/productlist">
-      <Products />
+        <Products />
       </Link>
       <Newsletter />
       <Footer />

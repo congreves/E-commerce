@@ -7,7 +7,10 @@ import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { mobile } from "../responsive";
 import productState from "../store/Products/atom";
-import { useRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import axios from "axios";
 
 const Container = styled.div`
   display: block;
@@ -119,41 +122,41 @@ const Button = styled.button`
 `;
 
 function Product() {
+  const params = useParams(); // /products/1
   const [products, setProducts] = useRecoilState(productState);
+  const product = products.find((p) => p.id === parseInt(params.productId));
 
-function handleClick() {
-  const item = {id: "72820",
-  
-};
-setProducts({
-  ...products,
-  cart: [...products.cart, item]
-})
-console.log(products)
-}
+  useEffect(() => {
+    axios
+      .get(`https://fakestoreapi.com/products/${params.productId}`)
+      .then((res) => res.json())
+      .then((json) => setProducts(json));
+  }, []);
 
+  function handleClick() {
+    const item = {
+      id: product.id,
+      qty: 1,
+    };
 
-
-
-
+    setProducts({
+      ...products,
+      cart: [...products.cart, item],
+    });
+    console.log(products);
+  }
 
   return (
     <Container>
       <Navbar />
       <Wrapper>
         <ImageContainer>
-          <Image src="https://i.ibb.co/S6qMxwr/jean.jpg" />
+          <Image src={product.image} />
         </ImageContainer>
         <InfoContainer>
-          <Title>Denim Jumpsuit</Title>
-          <Desc>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-            venenatis, dolor in finibus malesuada, lectus ipsum porta nunc, at
-            iaculis arcu nisi sed mauris. Nulla fermentum vestibulum ex, eget
-            tristique tortor pretium ut. Curabitur elit justo, consequat id
-            condimentum ac, volutpat ornare.
-          </Desc>
-          <Price>$ 20</Price>
+          <Title>{product.title}</Title>
+          <Desc>{product.description}</Desc>
+          <Price>{product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
@@ -183,7 +186,9 @@ console.log(products)
           </AddContainer>
         </InfoContainer>
       </Wrapper>
+
       <Newsletter />
+
       <Footer />
     </Container>
   );
