@@ -5,7 +5,7 @@ import Navbar from "../components/Navbar/Navbar";
 import Newsletter from "../components/Newsletter/Newsletter";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { mobile } from "../responsive";
+import { mobile } from "../responsive"
 import productState from "../store/Products/atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";

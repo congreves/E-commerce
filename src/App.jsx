@@ -1,9 +1,9 @@
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Login from "./pages/Login"
 import Register from "./pages/Register";
-import ProductList from "./pages/ProductsPage";
-import Product from "./pages/SingleProductPage";
-import Cart from "./pages/Cart";
+import ProductList from "./pages/ProductList";
+import Product from "./pages/SingleProduct";
+import Cart from "./pages/Cart/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {

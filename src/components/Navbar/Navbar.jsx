@@ -24,7 +24,7 @@ function Navbar() {
             <MenuItem>Register</MenuItem>
           </Link>
           <Link to="/login" style={linkStyle}>
-            <MenuItem>Sign In</MenuItem>
+            <MenuItem>Log In</MenuItem>
           </Link>
         </Left>
         <Center>

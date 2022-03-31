@@ -50,7 +50,7 @@ function ProductList() {
         <Filter>
           <FilterText>Filter Products</FilterText>
           <Select>
-            <Option disabled selected>
+            <Option>
               Color
             </Option>
             <Option>White</Option>
@@ -62,7 +62,7 @@ function ProductList() {
           </Select>
 
           <Select>
-            <Option disabled selected>
+            <Option >
               Size
             </Option>
             <Option>XS</Option>
@@ -75,14 +75,15 @@ function ProductList() {
         <Filter>
           <FilterText>Sort Products</FilterText>
           <Select>
-            <Option selected>Newest</Option>
+            <Option>Newest</Option>
             <Option>Price (asc)</Option>
             <Option>Price (desc)</Option>
           </Select>
         </Filter>
       </FilterContainer>
       {products.map((product) => (
-        <Link to={`/product/${product.id}`}>
+
+        <Link key={product.id} to={`/product/${product.id}`}>
           <Products />
         </Link>
       ))}
