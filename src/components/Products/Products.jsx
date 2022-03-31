@@ -5,7 +5,7 @@ import {
   ShoppingCartCheckoutOutlined,
 } from "@mui/icons-material";
 import { useRecoilValue } from "recoil";
-import productState from "../../store/Products/atom";
+import productState from "../../store/products/atom";
 import {
   Container,
   Info,
@@ -23,8 +23,7 @@ function Products() {
     <Container>
       {products.map((product) => {
         return (
-    
-          <Link key={product.id} to={`./product/${product.id}`}>
+          <Link key={product.id} to={`/product/${product.id}`}>
             <ProductContainer>
               <Circle />
               <Image src={product.image} />

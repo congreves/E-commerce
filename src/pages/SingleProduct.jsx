@@ -6,12 +6,11 @@ import Newsletter from "../components/Newsletter/Newsletter";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { mobile } from "../responsive";
-import productState from "../store/Products/atom";
-import cartState from "../store/Cart/atom";
+import productState from "../store/products/atom";
+import cartState from "../store/cart/atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
-import { CreateCartAPI } from "../store/Cart/atom";
-
+import { CreateCartAPI } from "../store/cart/atom";
 
 function Product() {
   const params = useParams();
@@ -57,7 +56,9 @@ function Product() {
 
               <AddCircleOutlineOutlinedIcon />
             </AmountContainer>
-            <Button onClick={() => addToCart(product.id)}>Add To Cart</Button>
+            <Button onClick={() => addToCart(product.id, 1)}>
+              Add To Cart
+            </Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
