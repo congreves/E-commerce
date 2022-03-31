@@ -5,12 +5,69 @@ import Navbar from "../components/Navbar/Navbar";
 import Newsletter from "../components/Newsletter/Newsletter";
 import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
-import { mobile } from "../responsive"
+import { mobile } from "../responsive";
 import productState from "../store/Products/atom";
+import cartState from "../store/Cart/atom";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
+import { CreateCartAPI } from "../store/Cart/atom";
+
+
+function Product() {
+  const params = useParams();
+  const products = useRecoilValue(productState);
+  const product = products.find((p) => p.id === parseInt(params.productId));
+  const [cart, setCart] = useRecoilState(cartState);
+
+  const { addToCart } = CreateCartAPI();
+
+  return (
+    <Container>
+      <Navbar />
+      <Wrapper>
+        <ImageContainer>
+          <Image src={product.image} />
+        </ImageContainer>
+        <InfoContainer>
+          <Title>{product.title}</Title>
+          <Desc>{product.description}</Desc>
+          <Price>{product.price}</Price>
+          <FilterContainer>
+            <Filter>
+              <FilterTitle>Color</FilterTitle>
+              <FilterColor color="black" />
+              <FilterColor color="darkblue" />
+              <FilterColor color="grey" />
+            </Filter>
+            <Filter>
+              <FilterTitle>Size</FilterTitle>
+              <FilterSize>
+                <FilterSizeOption>XS</FilterSizeOption>
+                <FilterSizeOption>S</FilterSizeOption>
+                <FilterSizeOption>M</FilterSizeOption>
+                <FilterSizeOption>L</FilterSizeOption>
+                <FilterSizeOption>XL</FilterSizeOption>
+              </FilterSize>
+            </Filter>
+          </FilterContainer>
+          <AddContainer>
+            <AmountContainer>
+              <DeleteOutlineRoundedIcon />
+              <Amount>1</Amount>
+
+              <AddCircleOutlineOutlinedIcon />
+            </AmountContainer>
+            <Button onClick={() => addToCart(product.id)}>Add To Cart</Button>
+          </AddContainer>
+        </InfoContainer>
+      </Wrapper>
+
+      <Newsletter />
+
+      <Footer />
+    </Container>
+  );
+}
 
 const Container = styled.div`
   display: block;
@@ -120,78 +177,5 @@ const Button = styled.button`
     color: #ffff;
   }
 `;
-
-function Product() {
-  const params = useParams(); // /products/1
-  const [products, setProducts] = useRecoilState(productState);
-  const product = products.find((p) => p.id === parseInt(params.productId));
-
-  useEffect(() => {
-    axios
-      .get(`https://fakestoreapi.com/products/${params.productId}`)
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
-  }, []);
-
-  function handleClick() {
-    const item = {
-      id: product.id,
-      qty: 1,
-    };
-
-    setProducts({
-      ...products,
-      cart: [...products.cart, item],
-    });
-    console.log(products);
-  }
-
-  return (
-    <Container>
-      <Navbar />
-      <Wrapper>
-        <ImageContainer>
-          <Image src={product.image} />
-        </ImageContainer>
-        <InfoContainer>
-          <Title>{product.title}</Title>
-          <Desc>{product.description}</Desc>
-          <Price>{product.price}</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="grey" />
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
-          <AddContainer>
-            <AmountContainer>
-              <DeleteOutlineRoundedIcon />
-              <Amount>1</Amount>
-
-              <AddCircleOutlineOutlinedIcon />
-            </AmountContainer>
-            <Button onClick={handleClick}>Add To Cart</Button>
-          </AddContainer>
-        </InfoContainer>
-      </Wrapper>
-
-      <Newsletter />
-
-      <Footer />
-    </Container>
-  );
-}
 
 export default Product;

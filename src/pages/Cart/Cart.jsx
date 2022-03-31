@@ -27,16 +27,14 @@ import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import React from "react";
 import Footer from "../../components/Footer/Footer";
 import Navbar from "../../components/Navbar/Navbar";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import productState from "../../store/Products/atom";
 import Total from "../../components/Cart/Total";
+import { CreateCartAPI } from "../../store/Cart/atom";
 
 function Cart() {
-  const [products, setProducts] = useRecoilState(productState);
-
-  function handleRemove(id) {
-    setProducts(products.filter((p) => p.id !== id));
-  }
+  const products = useRecoilValue(productState);
+  const { cart, increaseQty, reduceQty, removeFromCart } = CreateCartAPI();
 
   return (
     <Container>
@@ -54,7 +52,14 @@ function Cart() {
         <Bottom>
           <Info>
             <Hr />
-            {products.map((product) => {
+            {cart.map(({ id, qty }) => {
+              const product = products.find((p) => p.id === id);
+
+              if (!product) {
+                console.warn(`pages/Cart: Didn't find product with ID ${id}`);
+                return null;
+              }
+
               return (
                 <Product>
                   <ProductDetail>
@@ -68,23 +73,23 @@ function Cart() {
                       />
                       <ProductSize>EU 42</ProductSize>
                       <DeleteOutlineRoundedIcon
-                        onClick={() => handleRemove(products.id)}
+                        onClick={() => removeFromCart(products.id)}
                       />
                     </Details>
                   </ProductDetail>
                   <PriceDetail>
                     <ProductAmountContainer>
-                      <Add />
+                      <Add  onClick={() => increaseQty(id)} />
                       <ProductAmount>1</ProductAmount>
-                      <Remove />
+                      <Remove onClick={() => reduceQty(id)}/>
                     </ProductAmountContainer>
-                    <ProductPrice> $ 29 </ProductPrice>
+                    <ProductPrice> $ {product.price} </ProductPrice>
                   </PriceDetail>
                 </Product>
               );
             })}
           </Info>
-        <Total />
+          <Total />
         </Bottom>
       </Wrapper>
       <Footer />

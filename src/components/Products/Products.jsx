@@ -1,46 +1,48 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
   FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartCheckoutOutlined,
 } from "@mui/icons-material";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import productState from "../../store/Products/atom";
-import axios from "axios";
-import { Container, Info, Product, Circle, Image, Icon,} from "./Products.styles"
+import {
+  Container,
+  Info,
+  ProductContainer,
+  Circle,
+  Image,
+  Icon,
+} from "./Products.styles";
+import { Link } from "react-router-dom";
 
-
-
-function Products({ item }) {
-  const [products, setProducts] = useRecoilState(productState);
-
-  useEffect(() => {
-    axios.get("https://k4backend.osuka.dev/products").then((response) => {
-      setProducts(response.data);
-    });
-  }, []);
-
-  useEffect(() => {}, [products]);
+function Products() {
+  const products = useRecoilValue(productState);
 
   return (
     <Container>
-      {products.map((product) => (
-        <Product key={product.id} to={`./product/${product.id}`}>
-          <Circle />
-          <Image src={product.image} />
-          <Info>
-            <Icon>
-              <ShoppingCartCheckoutOutlined />
-            </Icon>
-            <Icon>
-              <SearchOutlined />
-            </Icon>
-            <Icon>
-              <FavoriteBorderOutlined />
-            </Icon>
-          </Info>
-        </Product>
-      ))}
+      {products.map((product) => {
+        return (
+    
+          <Link key={product.id} to={`./product/${product.id}`}>
+            <ProductContainer>
+              <Circle />
+              <Image src={product.image} />
+              <Info>
+                <Icon>
+                  <ShoppingCartCheckoutOutlined />
+                </Icon>
+                <Icon>
+                  <SearchOutlined />
+                </Icon>
+                <Icon>
+                  <FavoriteBorderOutlined />
+                </Icon>
+              </Info>
+            </ProductContainer>
+          </Link>
+        );
+      })}
     </Container>
   );
 }

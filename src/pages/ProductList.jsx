@@ -10,6 +10,51 @@ import { useRecoilState } from "recoil";
 import productState from "../store/Products/atom";
 import axios from "axios";
 
+function ProductList() {
+  const [products, setProducts] = useRecoilState(productState);
+
+  return (
+    <Container>
+      <Navbar />
+      <Title>Dresses</Title>
+      <FilterContainer>
+        <Filter>
+          <FilterText>Filter Products</FilterText>
+          <Select>
+            <Option>Color</Option>
+            <Option>White</Option>
+            <Option>Black</Option>
+            <Option>Red</Option>
+            <Option>Blue</Option>
+            <Option>Yellow</Option>
+            <Option>Green</Option>
+          </Select>
+
+          <Select>
+            <Option>Size</Option>
+            <Option>XS</Option>
+            <Option>S</Option>
+            <Option>M</Option>
+            <Option>L</Option>
+            <Option>XL</Option>
+          </Select>
+        </Filter>
+        <Filter>
+          <FilterText>Sort Products</FilterText>
+          <Select>
+            <Option>Newest</Option>
+            <Option>Price (asc)</Option>
+            <Option>Price (desc)</Option>
+          </Select>
+        </Filter>
+      </FilterContainer>
+      <Products />
+      <Newsletter />
+      <Footer />
+    </Container>
+  );
+}
+
 const Container = styled.div``;
 
 const Title = styled.h1`
@@ -38,59 +83,5 @@ const Select = styled.select`
   ${mobile({ margin: "10px 0px" })}
 `;
 const Option = styled.option``;
-
-function ProductList() {
-  const [products, setProducts] = useRecoilState(productState);
-
-  return (
-    <Container>
-      <Navbar />
-      <Title>Dresses</Title>
-      <FilterContainer>
-        <Filter>
-          <FilterText>Filter Products</FilterText>
-          <Select>
-            <Option>
-              Color
-            </Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
-            <Option>Green</Option>
-          </Select>
-
-          <Select>
-            <Option >
-              Size
-            </Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
-          </Select>
-        </Filter>
-        <Filter>
-          <FilterText>Sort Products</FilterText>
-          <Select>
-            <Option>Newest</Option>
-            <Option>Price (asc)</Option>
-            <Option>Price (desc)</Option>
-          </Select>
-        </Filter>
-      </FilterContainer>
-      {products.map((product) => (
-
-        <Link key={product.id} to={`/product/${product.id}`}>
-          <Products />
-        </Link>
-      ))}
-      <Newsletter />
-      <Footer />
-    </Container>
-  );
-}
 
 export default ProductList;

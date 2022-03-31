@@ -24,7 +24,7 @@ export const Info = styled.div`
   transition: all 0.5s ease;
   cursor: pointer;
 `;
-export const Product = styled.div`
+export const ProductContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
