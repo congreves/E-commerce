@@ -11,42 +11,49 @@ export function CreateCartAPI() {
   const [cart, setCart] = useRecoilState(cartState);
 
   function addToCart(id, qty = 1) {
-    const product = cart.find((p) => p.id !== id);
+    const product = cart.find((p) => p.id === id);
 
     if (product) {
-      const oldCartState = cart.filter((p) => p.id !== id)
-      setCart([
-        ...oldCartState,
-        {
-          id: id,
-          qty: qty + 1,
-        },
-      ]);
+      const newState = cart.map((product) => {
+        if (product.id === id) {
+          return {
+            id: id,
+            qty: product.qty + 1,
+          }
+        }
+        return product;
+      })
+      setCart(newState);
       return;
     }
     setCart([...cart, { id, qty }])
   }
+
   function reduceQty(id) {
-    const product = cart.find((p) => p.id === id);
-    const oldQty = cart.filter((p) => p.id !== id);
-    const newQty = [
-      ...oldQty,
-      { id, qty: product.qty > 1 ? qty - 1 : product.qty },
-    ];
-    setCart(newQty);
+    const newState = cart.map((product) => {
+      if (product.id === id) {
+        return { id, qty: product.qty > 1 ? product.qty - 1 : product.qty };
+      }
+      return product;
+    })
+    setCart(newState);
   }
 
   function increaseQty(id) {
-    const product = cart.find((p) => p.id === id);
-    const oldQty = cart.filter((p) => p.id !== id);
-    const newQty = [...oldQty, { id, qty: product.qty + 1 }];
-    setCart(newQty);
+    const newState = cart.map((product) => {
+      if (product.id === id) {
+        return { id, qty: product.qty + 1 }
+      }
+      return product;
+    })
+    setCart(newState);
   }
 
   function removeFromCart(id) {
     const newCartState = cart.filter((p) => p.id !== id);
     setCart(newCartState);
   }
+
   return {
     cart,
     addToCart,

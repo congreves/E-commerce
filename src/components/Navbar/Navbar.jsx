@@ -1,6 +1,6 @@
 import { ShoppingCartOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -10,12 +10,23 @@ import {
   Center,
   Right,
   MenuItem,
-  linkStyle
-
+  linkStyle,
 } from "./Navbar.styles";
-
+import { CreateCartAPI } from "../../store/cart/atom";
 
 function Navbar() {
+  const { cart } = CreateCartAPI();
+  const [totalQty, setTotalQty] = useState(0);
+
+  useEffect(() => {
+    const total = cart.reduce((acc, product) => {
+      acc = acc + product.qty;
+      return acc;
+    }, 0);
+
+    setTotalQty(total);
+  }, [cart, setTotalQty]);
+
   return (
     <Container>
       <Wrapper>
@@ -38,7 +49,7 @@ function Navbar() {
           </Link>
           <MenuItem>
             <Link to="/cart" style={linkStyle}>
-              <Badge badgeContent={4} color="primary">
+              <Badge badgeContent={totalQty} color="primary">
                 <ShoppingCartOutlined />
               </Badge>
             </Link>

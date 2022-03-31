@@ -7,7 +7,7 @@ import Newsletter from "../components/Newsletter/Newsletter";
 import Products from "../components/Products/Products";
 import { mobile } from "../responsive";
 import { useRecoilState } from "recoil";
-import productState from "../store/Products/atom";
+import productState from "../store/products/atom";
 import axios from "axios";
 
 function ProductList() {

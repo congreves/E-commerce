@@ -6,7 +6,7 @@ import Product from "./pages/SingleProduct";
 import Cart from "./pages/Cart/Cart";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
-import  productState  from "./store/Products/atom";
+import { productState } from "./store/products/atom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import axios from "axios";
 
@@ -26,6 +26,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/productlist" element={<ProductList />} />
         <Route path="/product/:productId" element={<Product />} />
       </Routes>
     </BrowserRouter>
@@ -33,5 +34,3 @@ function App() {
 }
 
 export default App;
-
- /* <Route path="/productlist" element={<ProductList />} />*/

@@ -1,6 +1,4 @@
 import React from "react";
-import styled from "styled-components";
-import { mobile } from "../../responsive";
 import { categories } from "../../data";
 import {
   Container,
@@ -10,7 +8,6 @@ import {
   Title,
   Button,
 } from "./Categories.styles";
-
 
 function Categories() {
   return (
@@ -41,4 +38,3 @@ function Categories() {
 }
 
 export default Categories;
-
