@@ -5,8 +5,96 @@ import styled from "styled-components";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import { mobile } from "../responsive";
-import { useRecoilState } from "recoil";
-import productState from "../store/Products/atom";
+import { useRecoilValue } from "recoil";
+import { CreateCartAPI } from "../store/cart/atom";
+import productState from "../store/products/atom";
+
+function Cart() {
+  const products = useRecoilValue(productState);
+  const { cart, increaseQty, reduceQty, removeFromCart } = CreateCartAPI();
+
+  return (
+    <Container>
+      <Navbar />
+      <Wrapper>
+        <Title>Your Bag</Title>
+        <Top>
+          <TopButton type="outlined">Continue Shopping</TopButton>
+          <TopTexts>
+            <TopText>Shopping bag (1)</TopText>
+            <TopText>Your Wishlist (0)</TopText>
+          </TopTexts>
+          <TopButton type="filled">Check Out Now</TopButton>
+        </Top>
+        <Bottom>
+          <Info>
+            <Hr />
+
+            {cart.map(({ id, qty }) => {
+              const product = products.find((p) => p.id === id);
+
+              if (!product) {
+                console.warn(`pages/Cart: Didn't find product with ID ${id}`);
+                return null;
+              }
+
+              return (
+                <Product>
+                  <ProductDetail>
+                    <Image src={product.image} />
+                    <Details>
+                      <ProductName>{product.title}</ProductName>
+                      <ProductId>{product.id}</ProductId>
+                      <ProductColor
+                        color="#EED8C0
+"
+                      />
+                      <ProductSize>EU 42</ProductSize>
+                      <DeleteOutlineRoundedIcon
+                        onClick={() => removeFromCart(id)}
+                      />
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <ProductAmountContainer>
+                      <Add onClick={() => increaseQty(id)} />
+                      <ProductAmount>{qty}</ProductAmount>
+                      <Remove onClick={() => reduceQty(id)} />
+                    </ProductAmountContainer>
+                    <ProductPrice> $ {product.price}</ProductPrice>
+                  </PriceDetail>
+                </Product>
+              );
+            })}
+          </Info>
+          <Summary>
+            <SummaryTitle>Order Summary</SummaryTitle>
+            <SummaryItem>
+              <SummaryItemText>Subtotal</SummaryItemText>
+              <SummaryItemPrice>$ 68</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem>
+              <SummaryItemText>Estimated Shipping</SummaryItemText>
+              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem>
+              <SummaryItemText>Shipping Discount</SummaryItemText>
+              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+            </SummaryItem>
+            <SummaryItem type="total">
+              <SummaryItemText>Total</SummaryItemText>
+              <SummaryItemPrice>$ 68</SummaryItemPrice>
+            </SummaryItem>
+            <Button>Checkout Now</Button>
+          </Summary>
+        </Bottom>
+      </Wrapper>
+      <Footer />
+    </Container>
+  );
+}
+
+export default Cart;
 
 const Container = styled.div``;
 
@@ -158,85 +246,3 @@ const Button = styled.button`
     color: #b7ccc0;
   }
 `;
-
-function Cart() {
-  const [products, setProducts] = useRecoilState(productState);
-
-  function handleRemove(id) {
-    setProducts(products.filter((p) => p.id !== id));
-  }
-
-  return (
-    <Container>
-      <Navbar />
-      <Wrapper>
-        <Title>Your Bag</Title>
-        <Top>
-          <TopButton type="outlined">Continue Shopping</TopButton>
-          <TopTexts>
-            <TopText>Shopping bag (1)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
-          </TopTexts>
-          <TopButton type="filled">Check Out Now</TopButton>
-        </Top>
-        <Bottom>
-          <Info>
-            <Hr />
-            {products.map((product) => {
-              return (
-                <Product>
-                  <ProductDetail>
-                    <Image src={product.image} />
-                    <Details>
-                      <ProductName>{product.title}</ProductName>
-                      <ProductId>{product.id}</ProductId>
-                      <ProductColor
-                        color="#EED8C0
-"
-                      />
-                      <ProductSize>EU 42</ProductSize>
-                      <DeleteOutlineRoundedIcon
-                        onClick={() => handleRemove(products.id)}
-                      />
-                    </Details>
-                  </ProductDetail>
-                  <PriceDetail>
-                    <ProductAmountContainer>
-                      <Add />
-                      <ProductAmount>1</ProductAmount>
-                      <Remove />
-                    </ProductAmountContainer>
-                    <ProductPrice> $ 29 </ProductPrice>
-                  </PriceDetail>
-                </Product>
-              );
-            })}
-          </Info>
-          <Summary>
-            <SummaryTitle>Order Summary</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 68</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 68</SummaryItemPrice>
-            </SummaryItem>
-            <Button>Checkout Now</Button>
-          </Summary>
-        </Bottom>
-      </Wrapper>
-      <Footer />
-    </Container>
-  );
-}
-
-export default Cart;

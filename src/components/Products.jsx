@@ -1,13 +1,45 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import {
   FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartCheckoutOutlined,
 } from "@mui/icons-material";
-import { useRecoilState } from "recoil";
-import productState from "../store/Products/atom";
-import axios from "axios";
+import { Link } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import productState from "../store/products/atom";
+
+function Products() {
+  const products = useRecoilValue(productState);
+
+  return (
+    <Container>
+      {products.map((product) => {
+        return (
+          <Link key={product.id} to={`/product/${product.id}`}>
+            <ProductContainer>
+              <Circle />
+              <Image src={product.image} />
+              <Info>
+                <Icon>
+                  <ShoppingCartCheckoutOutlined />
+                </Icon>
+                <Icon>
+                  <SearchOutlined />
+                </Icon>
+                <Icon>
+                  <FavoriteBorderOutlined />
+                </Icon>
+              </Info>
+            </ProductContainer>
+          </Link>
+        );
+      })}
+    </Container>
+  );
+}
+
+export default Products;
 
 const Container = styled.div`
   display: flex;
@@ -31,7 +63,7 @@ const Info = styled.div`
   transition: all 0.5s ease;
   cursor: pointer;
 `;
-const Product = styled.div`
+const ProductContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -77,39 +109,3 @@ transition: all 0.5s ease &:hover;
 }
 
 `;
-
-function Products({ item }) {
-  const [products, setProducts] = useRecoilState(productState);
-
-  useEffect(() => {
-    axios.get("https://k4backend.osuka.dev/products").then((response) => {
-      setProducts(response.data);
-    });
-  }, []);
-
-  useEffect(() => {}, [products]);
-
-  return (
-    <Container>
-      {products.map((product) => (
-        <Product key={product.id} to={`./product/${product.id}`}>
-          <Circle />
-          <Image src={product.image} />
-          <Info>
-            <Icon>
-              <ShoppingCartCheckoutOutlined />
-            </Icon>
-            <Icon>
-              <SearchOutlined />
-            </Icon>
-            <Icon>
-              <FavoriteBorderOutlined />
-            </Icon>
-          </Info>
-        </Product>
-      ))}
-    </Container>
-  );
-}
-
-export default Products;
