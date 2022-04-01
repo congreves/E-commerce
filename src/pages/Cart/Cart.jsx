@@ -44,7 +44,7 @@ function Cart() {
         <Top>
           <TopButton type="outlined">Continue Shopping</TopButton>
           <TopTexts>
-            <TopText>Shopping bag (1)</TopText>
+            <TopText>Shopping bag (3)</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">Check Out Now</TopButton>
@@ -61,7 +61,7 @@ function Cart() {
               }
 
               return (
-                <Product>
+                <Product key={product.id}>
                   <ProductDetail>
                     <Image src={product.image} />
                     <Details>
@@ -73,14 +73,14 @@ function Cart() {
                       />
                       <ProductSize>EU 42</ProductSize>
                       <DeleteOutlineRoundedIcon
-                        onClick={() => removeFromCart(products.id)}
+                        onClick={() => removeFromCart(product.id)}
                       />
                     </Details>
                   </ProductDetail>
                   <PriceDetail>
                     <ProductAmountContainer>
                       <Add  onClick={() => increaseQty(id)} />
-                      <ProductAmount>1</ProductAmount>
+                      <ProductAmount>{qty}</ProductAmount>
                       <Remove onClick={() => reduceQty(id)}/>
                     </ProductAmountContainer>
                     <ProductPrice> $ {product.price} </ProductPrice>

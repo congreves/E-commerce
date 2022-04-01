@@ -24,7 +24,7 @@ function Products() {
       {products.map((product) => {
         return (
     
-          <Link key={product.id} to={`./product/${product.id}`}>
+          <Link key={product.id} to={`/product/${product.id}`}>
             <ProductContainer>
               <Circle />
               <Image src={product.image} />

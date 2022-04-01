@@ -11,7 +11,7 @@ export function CreateCartAPI() {
   const [cart, setCart] = useRecoilState(cartState);
 
   function addToCart(id, qty = 1) {
-    const product = cart.find((p) => p.id !== id);
+    const product = cart.find((p) => p.id === id);
 
     if (product) {
       const oldCartState = cart.filter((p) => p.id !== id)
@@ -19,7 +19,7 @@ export function CreateCartAPI() {
         ...oldCartState,
         {
           id: id,
-          qty: qty + 1,
+          qty: product.qty + 1,
         },
       ]);
       return;
@@ -31,7 +31,7 @@ export function CreateCartAPI() {
     const oldQty = cart.filter((p) => p.id !== id);
     const newQty = [
       ...oldQty,
-      { id, qty: product.qty > 1 ? qty - 1 : product.qty },
+      { id, qty: product.qty > 1 ? product.qty - 1 : product.qty },
     ];
     setCart(newQty);
   }
