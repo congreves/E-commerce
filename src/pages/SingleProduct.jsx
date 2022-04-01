@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
@@ -7,19 +7,29 @@ import DeleteOutlineRoundedIcon from "@mui/icons-material/DeleteOutlineRounded";
 import AddCircleOutlineOutlinedIcon from "@mui/icons-material/AddCircleOutlineOutlined";
 import { mobile } from "../responsive";
 import productState from "../store/Products/atom";
-import cartState from "../store/Cart/atom";
-import { useRecoilValue, useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { useParams } from "react-router-dom";
 import { CreateCartAPI } from "../store/Cart/atom";
-
 
 function Product() {
   const params = useParams();
   const products = useRecoilValue(productState);
   const product = products.find((p) => p.id === parseInt(params.productId));
-  const [cart, setCart] = useRecoilState(cartState);
-
   const { addToCart } = CreateCartAPI();
+
+  const [qty, setQty] = useState(1);
+
+  function handleReduceQty() {
+    if (qty > 1) {
+      setQty(qty - 1);
+      return;
+    }
+    setQty(1);
+  }
+
+  function handleAddToQty() {
+    setQty(qty + 1);
+  }
 
   return (
     <Container>
@@ -52,12 +62,14 @@ function Product() {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <DeleteOutlineRoundedIcon />
-              <Amount>1</Amount>
-
-              <AddCircleOutlineOutlinedIcon />
+              <DeleteOutlineRoundedIcon onClick={handleReduceQty} />
+              <Amount>{qty}</Amount>
+              <AddCircleOutlineOutlinedIcon onClick={handleAddToQty} />
             </AmountContainer>
-            <Button onClick={() => addToCart(product.id)}>Add To Cart</Button>
+
+            <Button onClick={() => addToCart(product.id, qty)}>
+              Add To Cart
+            </Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

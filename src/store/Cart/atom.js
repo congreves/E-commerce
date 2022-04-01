@@ -1,4 +1,5 @@
 import { atom, useRecoilState } from "recoil";
+import { saveToLocalStorage } from "../../utility/localStorage";
 
 export const cartState = atom({
   key: "cartState",
@@ -14,18 +15,27 @@ export function CreateCartAPI() {
     const product = cart.find((p) => p.id === id);
 
     if (product) {
-      const oldCartState = cart.filter((p) => p.id !== id)
+      const oldCartState = cart.filter((p) => p.id !== id);
       setCart([
         ...oldCartState,
         {
           id: id,
-          qty: product.qty + 1,
+          qty: product.qty + qty,
+        },
+      ]);
+      saveToLocalStorage("cart",[
+        ...oldCartState,
+        {
+          id: id,
+          qty: product.qty + qty,
         },
       ]);
       return;
     }
-    setCart([...cart, { id, qty }])
+    setCart([...cart, { id, qty }]);
+    saveToLocalStorage("cart",[...cart, { id, qty }]);
   }
+
   function reduceQty(id) {
     const product = cart.find((p) => p.id === id);
     const oldQty = cart.filter((p) => p.id !== id);
@@ -34,6 +44,7 @@ export function CreateCartAPI() {
       { id, qty: product.qty > 1 ? product.qty - 1 : product.qty },
     ];
     setCart(newQty);
+    saveToLocalStorage("cart",newQty);
   }
 
   function increaseQty(id) {
@@ -41,12 +52,15 @@ export function CreateCartAPI() {
     const oldQty = cart.filter((p) => p.id !== id);
     const newQty = [...oldQty, { id, qty: product.qty + 1 }];
     setCart(newQty);
+    saveToLocalStorage("cart",newQty);
   }
 
   function removeFromCart(id) {
     const newCartState = cart.filter((p) => p.id !== id);
     setCart(newCartState);
+    saveToLocalStorage("cart",newCartState);
   }
+
   return {
     cart,
     addToCart,

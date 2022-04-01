@@ -8,16 +8,24 @@ import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { productState } from "./store/Products/atom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { getDataFromLocalStorage } from "./utility/localStorage";
 import axios from "axios";
+import cartState from "./store/Cart/atom";
 
 function App() {
-  const [_, setProducts] = useRecoilState(productState);
+  const setProducts = useRecoilState(productState)[1];
+  const setCart = useRecoilState(cartState)[1];
 
   useEffect(() => {
     axios.get("https://k4backend.osuka.dev/products").then((response) => {
       setProducts(response.data);
     });
   }, [setProducts]);
+
+  useEffect(() => {
+    const cartData = getDataFromLocalStorage("cart");
+    setCart(cartData);
+  }, [setCart]);
 
   return (
     <BrowserRouter>
@@ -35,4 +43,4 @@ function App() {
 
 export default App;
 
- /* */
+/* */

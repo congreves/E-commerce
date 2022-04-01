@@ -68,3 +68,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+- Det ska fortsatt finnas sidor för produkter, enskild produkt, cart som i K3.
+- En användare ska kunna registrera sig, logga in och logga ut
+- En inloggad användare ska kunna besöka en särskild sida där de kan se sin konto-information
+- En admin ska kunna logga in
+- En admin ska kunna besöka en särskild sida endast en inloggad admin kan besöka, med en lista på samtliga produkter och användare
+- Applikationen ska använda all produktinformation från backenden
+- Applikationen ska inte använda importerade lokala filer eller s.k. hårdkodade produktlistor.
+- Applikationen ska använda stores för att hantera användar- och produkt-data från backenden
+- Applikationen ska använda stores för att förse olika Sidor/Routes med användar- och produkt-data, inte props
+- Applikationen ska använda ett (1) huvudsakligt sätt att styla applikationen och inte mixa olika sätt utan anledning
+- Applikationen ska finnas deployad/publicerad på exempelvis Netlify eller Github Pages
+- Genomförandet av en muntlig presentation och demo
