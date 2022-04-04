@@ -1,12 +1,12 @@
 import React from "react";
 import Footer from "../components/Footer/Footer";
 import Navbar from "../components/Navbar/Navbar";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import { authState } from "../store/auth/atom";
 import styled from "styled-components";
 import productState from "../store/Products/atom";
 import userState from "../store/users/atom";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   background-color: #ffff;

@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { useRecoilValue, useResetRecoilState } from "recoil";
 import { authState } from "../../store/auth/atom";

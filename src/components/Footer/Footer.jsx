@@ -8,8 +8,6 @@ import {
   Twitter,
 } from "@mui/icons-material";
 import React from "react";
-import styled from "styled-components";
-import { mobile } from "../../responsive";
 import {
   Container,
   Left,

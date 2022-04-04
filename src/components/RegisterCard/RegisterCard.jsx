@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 
 function RegisterCard(props) {
-  const [auth, setAuth] = useRecoilState(authState);
+  const [_, setAuth] = useRecoilState(authState);
   const [user, setUser] = useState({
     email: "",
     username: "",

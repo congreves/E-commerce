@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Navbar from "../components/Navbar/Navbar";
 import Footer from "../components/Footer/Footer";
 import LoginCard from "../components/LoginCard/LoginCard";
@@ -13,7 +13,7 @@ const Container = styled.div`
 `;
 
 function Login() {
-  const [auth, setAuth] = useRecoilState(authState);
+  const [_, setAuth] = useRecoilState(authState);
 
   const navigate = useNavigate();
 
