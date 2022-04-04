@@ -19,6 +19,7 @@ justify-content: space-between;
 flex-wrap: wrap;
 
 `
+
 const ProductContainer = styled.div`
 display: flex;
 align-items: center;
@@ -29,18 +30,22 @@ min-width: 280px;
 height: 350px;
 background-color: #f5fbfd;
 position: relative;
+flex-direction: column;
 
 &:hover {
   opacity: 1;
 }
 `;
 
-const ProductInfo = styled.h3`
+const ProductInfo = styled.h4`
+text-decoration: none;
+padding: 1em;
+max-width: 50%;
 
 `;
 const Image = styled.img`
 height: 55%;
-max-width: 75%;
+max-width: 50%;
 z-index: 2;
 `;
 const UserContainer = styled.div`
@@ -73,20 +78,20 @@ function Admin() {
     <Container>
           <Navbar />
           <Wrapper>
+         
       {products.map((product) => {
         return (
           <Link key={product.id} to={`/product/${product.id}`}>
             <ProductContainer>
               <Image src={product.image} />
               <ProductInfo>{product.title}</ProductInfo>
-               <ProductInfo>{product.title}</ProductInfo>
-              <ProductInfo>{product.price}</ProductInfo>
+              <ProductInfo>${product.price}</ProductInfo>
             </ProductContainer>
           </Link>
         );
       })}
 
-    
+
       {users.map((user) => {
         return (
           <UserContainer>

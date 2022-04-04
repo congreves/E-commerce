@@ -15,6 +15,7 @@ function Product() {
   const params = useParams();
   const products = useRecoilValue(productState);
   const product = products.find((p) => p.id === parseInt(params.productId));
+  
   const { addToCart } = CreateCartAPI();
 
   const [qty, setQty] = useState(1);
