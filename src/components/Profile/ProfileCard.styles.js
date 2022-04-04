@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { mobile } from "../../responsive";
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -9,9 +8,9 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  ${mobile({ width: "75%" })}
 `;
-export const LoginBox = styled.div`
+
+export const ProfileBox = styled.div`
   padding: 20px;
   width: 40%;
   background: rgba(255, 255, 255, 0.2);
@@ -26,34 +25,28 @@ export const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
 `;
-export const Form = styled.form`
+export const UserInfo = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 `;
-export const Input = styled.input`
+export const UserName = styled.h3`
   flex: 1;
   min-width: 40%;
-  margin: 10px 0px;
+  margin: 20px 10px 0px 0px;
   padding: 10px;
 `;
+
 export const Button = styled.button`
   width: 40%;
   border: 1px solid #b7ccc0;
   padding: 15px 20px;
-  margin: 10px 0px;
+
   background-color: #b7ccc0;
   color: #ffff;
   transition: all 0.5s ease;
-  cursor: pointer;
 
   &:hover {
     background-color: #ffff;
     color: #b7ccc0;
   }
 `;
-
-export const linkStyle = {
-  margin: "5px 0px",
-  textDecoration: "underline",
-  cursor: "pointer",
-};

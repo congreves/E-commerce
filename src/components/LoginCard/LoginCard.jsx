@@ -5,23 +5,40 @@ import {
   Form,
   Input,
   Button,
-  Link,
+  linkStyle,
 } from "./LoginCard.styles";
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-function LoginCard() {
+function LoginCard(props) {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <Wrapper>
-    <LoginBox>
-      <Title>Sign In</Title>
-      <Form>
-        <Input placeholder="Username" />
-        <Input placeholder="Password" />
-        <Button>Log In</Button>
-        <Link>Forgot your password?</Link>
-        <Link>Create A New Account</Link>
-      </Form>
-    </LoginBox>
+      <LoginBox>
+        <Title>Log In</Title>
+        <Form onSubmit={(e) => e.preventDefault()}>
+          <Input
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          <Button onClick={() => props.login(username, password)}>
+            Log In
+          </Button>
+          <Link to="/register" style={linkStyle}>Forgot your password?</Link>
+          <Link to="/register" style={linkStyle}>
+            Create a new account
+          </Link>
+        </Form>
+      </LoginBox>
     </Wrapper>
   );
 }

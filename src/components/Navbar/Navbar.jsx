@@ -31,12 +31,15 @@ function Navbar() {
     <Container>
       <Wrapper>
         <Left>
-          <Link to="/register" style={linkStyle}>
-            <MenuItem>Register</MenuItem>
+          <Link to="/profile" style={linkStyle}>
+            <MenuItem>Profile</MenuItem>
+          </Link>
+          <Link to="/admin" style={linkStyle}>
+          <MenuItem>Admin</MenuItem>
           </Link>
           <Link to="/login" style={linkStyle}>
             <MenuItem>Log In</MenuItem>
-          </Link>
+          </Link >
         </Left>
         <Center>
           <Link to="/" style={linkStyle}>

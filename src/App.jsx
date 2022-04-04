@@ -4,6 +4,8 @@ import Register from "./pages/Register";
 import ProductList from "./pages/ProductList";
 import Product from "./pages/SingleProduct";
 import Cart from "./pages/Cart/Cart";
+import Profile from "./pages/Profile";
+import Admin from "./pages/Admin";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { productState } from "./store/Products/atom";
@@ -11,9 +13,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { getDataFromLocalStorage } from "./utility/localStorage";
 import axios from "axios";
 import cartState from "./store/Cart/atom";
+import userState from "./store/users/atom";
 
 function App() {
   const setProducts = useRecoilState(productState)[1];
+  const setUsers = useRecoilState(userState)[1];
   const setCart = useRecoilState(cartState)[1];
 
   useEffect(() => {
@@ -23,9 +27,18 @@ function App() {
   }, [setProducts]);
 
   useEffect(() => {
+    axios.get('https://k4backend.osuka.dev/users').then((response) => {
+      setUsers(response.data);
+    });
+  }, [setUsers]);
+
+
+  useEffect(() => {
     const cartData = getDataFromLocalStorage("cart");
     setCart(cartData);
   }, [setCart]);
+
+ 
 
   return (
     <BrowserRouter>
@@ -34,6 +47,8 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/productlist" element={<ProductList />} />
         <Route path="/product/:productId" element={<Product />} />
       </Routes>
@@ -43,4 +58,4 @@ function App() {
 
 export default App;
 
-/* */
+
