@@ -79,7 +79,7 @@ function Admin() {
             <ProductContainer>
               <Image src={product.image} />
               <ProductInfo>{product.title}</ProductInfo>
-              <ProductInfo>{product.title}</ProductInfo>
+               <ProductInfo>{product.title}</ProductInfo>
               <ProductInfo>{product.price}</ProductInfo>
             </ProductContainer>
           </Link>

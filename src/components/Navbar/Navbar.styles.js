@@ -18,7 +18,9 @@ export const Left = styled.div`
   flex: 1;
   display: flex;
   justify-content: flex-start;
-  ${mobile({ display: "none" })}
+  align-items: center;
+  
+  
 `;
 export const Logo = styled.h1`
   font-weight: bold;
@@ -28,6 +30,8 @@ export const Logo = styled.h1`
 export const Center = styled.div`
   flex: 1;
   text-align: center;
+  align-items: center;
+ 
 `;
 export const Right = styled.div`
   flex: 1;
@@ -40,7 +44,7 @@ export const Right = styled.div`
 export const MenuItem = styled.div`
   font-size: 18px;
   cursor: pointer;
-  margin-left: 25px;
+  text-align: left;
   ${mobile({ fontSize: "14px", marginLeft: "15px" })}
 `;
 

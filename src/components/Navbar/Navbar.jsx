@@ -13,10 +13,20 @@ import {
   linkStyle,
 } from "./Navbar.styles";
 import { CreateCartAPI } from "../../store/Cart/atom";
+import { authState } from "../../store/auth/atom";
+import { useRecoilState, useResetRecoilState } from "recoil";
 
 function Navbar() {
   const { cart } = CreateCartAPI();
   const [totalQty, setTotalQty] = useState(0);
+  const [auth, setAuth] = useRecoilState(authState);
+  const reset = useResetRecoilState(authState);
+
+  function handleLogged() {
+    if(auth.token) {
+      reset()
+    }
+  }
 
   useEffect(() => {
     const total = cart.reduce((acc, product) => {
@@ -27,19 +37,31 @@ function Navbar() {
     setTotalQty(total);
   }, [cart, setTotalQty]);
 
+  console.log(auth);
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Link to="/profile" style={linkStyle}>
-            <MenuItem>Profile</MenuItem>
+          <Link
+            to={`${
+              auth.user && auth.user.role === "admin" ? "/admin" : "none"
+            }`}
+            style={linkStyle}
+          >
+            <MenuItem>
+              {" "}
+              {`${
+                auth.user && auth.user.role === "admin" ? "Admin" : ""
+              }`}{" "}
+            </MenuItem>
           </Link>
-          <Link to="/admin" style={linkStyle}>
-          <MenuItem>Admin</MenuItem>
+          <Link to={`${auth.token ? "/profile" : "/login"}`} style={linkStyle}>
+            <MenuItem> {`${auth.token ? "Profile" : "Log In"}`} </MenuItem>
           </Link>
-          <Link to="/login" style={linkStyle}>
-            <MenuItem>Log In</MenuItem>
-          </Link >
+          <Link to={`${auth.token ? "/login" : "/register"}`} style={linkStyle}>
+            <MenuItem onClick={handleLogged}> {`${auth.token ? "Log out" : "Create user"}`} </MenuItem>
+          </Link>
+
         </Left>
         <Center>
           <Link to="/" style={linkStyle}>
@@ -64,3 +86,7 @@ function Navbar() {
 }
 
 export default Navbar;
+
+/* <Link to={`${auth.token ? "/profile" : "/login"}`} style={linkStyle}>
+            <MenuItem> {`${auth.token ? "Profile" : "Log In"}`} </MenuItem>
+          </Link> */
